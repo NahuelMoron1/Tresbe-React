@@ -1,0 +1,86 @@
+/* Variables para mantener consistencia con los productos */
+:root {
+  --bg-nav: rgba(15, 23, 42, 0.9); /* Azul muy oscuro con transparencia */
+  --accent: #38bdf8; /* Celeste eléctrico */
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --border: rgba(51, 65, 85, 0.5);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: var(--bg-nav);
+  backdrop-filter: blur(12px); /* Efecto de desenfoque premium */
+  border-bottom: 1px solid var(--border);
+  padding: 0.5rem 2rem;
+  display: flex;
+  justify-content: center; /* Centra el menú */
+  height: 70px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 2.5rem; /* Espaciado entre links */
+  margin: 0;
+  padding: 0;
+  max-width: 1200px;
+  width: 100%;
+  justify-content: center;
+}
+
+/* Estilo de los links de React Router */
+nav ul li a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+  position: relative; /* Para la línea inferior animada */
+  padding: 0.5rem 0;
+}
+
+/* Efecto Hover */
+nav ul li a:hover {
+  color: var(--text-main);
+}
+
+/* Línea animada que aparece al pasar el mouse */
+nav ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px var(--accent); /* Brillo neón suave */
+}
+
+nav ul li a:hover::after {
+  width: 100%;
+}
+
+/* Responsive: Ajustes para móviles */
+@media (max-width: 768px) {
+  nav {
+    padding: 0 1rem;
+    height: auto;
+  }
+
+  nav ul {
+    gap: 1rem;
+    flex-wrap: wrap; /* Para que no se rompa en pantallas muy chicas */
+    padding: 1rem 0;
+  }
+
+  nav ul li a {
+    font-size: 0.8rem;
+  }
+}
