@@ -2,11 +2,13 @@ import { Link, useParams } from "react-router-dom";
 import { useProductItem } from "../../../hooks/Products";
 import "./ProductItem.css";
 import { useState } from "react";
+import { useCart } from "../../../hooks/Cart";
 
 export function ProductItem() {
   const { productID } = useParams<{ productID: string }>();
   const { product, options } = useProductItem(productID || "");
   const [selectedOption, setSelectedOption] = useState(""); // Estado opcional
+  const { addToCart, isOnCart } = useCart();
 
   if (!product) return <div className="loading">Cargando producto...</div>;
 
@@ -48,13 +50,18 @@ export function ProductItem() {
                     id="product-options"
                     className="custom-select"
                     value={selectedOption}
-                    onChange={(e) => setSelectedOption(e.target.value)}
+                    onChange={(e) => {
+                      console.log(e.target.value);
+
+                      setSelectedOption(e.target.value);
+                      console.log(selectedOption);
+                    }}
                   >
                     <option value="" disabled>
                       Elegir una opción...
                     </option>
                     {options.map((opt) => (
-                      <option key={opt.id} value={opt.id}>
+                      <option key={opt.id} value={opt.name}>
                         {opt.name}
                       </option>
                     ))}
@@ -74,7 +81,20 @@ export function ProductItem() {
               </div>
             )}
 
-            <button className="add-to-cart-btn">Añadir al carrito</button>
+            {isOnCart(product.id, selectedOption) >= 0 && (
+              <button className="is-on-cart-btn">En el carrito</button>
+            )}
+
+            {isOnCart(product.id, selectedOption) < 0 && (
+              <button
+                className="add-to-cart-btn"
+                onClick={() => {
+                  addToCart(product, selectedOption);
+                }}
+              >
+                Añadir al carrito
+              </button>
+            )}
           </div>
         </div>
       </div>
