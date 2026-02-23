@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import "./Cart.css";
 import { useCart } from "../../hooks/Cart";
 
-export function Cart() {
+export default function Cart() {
   const { addToCart, removeFromCart, clear_cart, discount_quantity, cart } =
     useCart();
 

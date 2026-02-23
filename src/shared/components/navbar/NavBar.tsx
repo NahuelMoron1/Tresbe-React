@@ -3,7 +3,7 @@ import "./NavBar.css";
 import { useEffect, useMemo } from "react";
 import { useUser } from "../../hooks/User";
 import { useCart } from "../../hooks/Cart";
-export function NavBar() {
+export default function NavBar() {
   const { cart } = useCart();
   const { user, get_user_logged, logout } = useUser();
 

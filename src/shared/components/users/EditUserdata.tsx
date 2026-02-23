@@ -3,7 +3,7 @@ import { useUser } from "../../hooks/User";
 import "./EditUserdata.css";
 import type { Userdata } from "../../models/User";
 
-export function EditUserdata() {
+export default function EditUserdata() {
   const { userdata, edit_userdata } = useUser();
 
   const hasChanges = (newData: Record<string, any>) => {

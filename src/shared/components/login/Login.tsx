@@ -2,8 +2,14 @@ import { sileo } from "sileo";
 import { useUser } from "../../hooks/User";
 import "./Login.css";
 
-export function Login() {
-  const { login } = useUser();
+export default function Login() {
+  const { user, login } = useUser();
+
+  if (user != null) {
+    window.location.href = "/";
+    return;
+  }
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 

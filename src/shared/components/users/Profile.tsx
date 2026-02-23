@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import { useUser } from "../../hooks/User";
 import "./Profile.css";
 
-export function Profile() {
+export default function Profile() {
   const { user, userdata } = useUser();
 
   if (!user || !userdata)

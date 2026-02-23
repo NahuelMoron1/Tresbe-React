@@ -7,7 +7,7 @@ import type { Product } from "../../../models/Products";
 import type { CartInfo } from "../../../models/Cart";
 import { sileo } from "sileo";
 
-export function ProductItem() {
+export default function ProductItem() {
   const { productID } = useParams<{ productID: string }>();
   const { product, options } = useProductItem(productID || "");
   const [selectedOption, setSelectedOption] = useState("");
