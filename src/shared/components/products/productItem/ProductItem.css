@@ -236,6 +236,17 @@
   padding: 10px;
 }
 
+.is-on-cart-btn {
+  background-color: #172f61;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+.is-on-cart-btn:hover {
+  color: rgb(0, 128, 255);
+}
+
 /* Responsive */
 @media (max-width: 992px) {
   .product-container {

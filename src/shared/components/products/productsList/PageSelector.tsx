@@ -1,12 +1,11 @@
 import { Stack, IconButton } from "@mui/material";
 import { ArrowBackIosNew, ArrowForwardIos } from "@mui/icons-material";
-import { useProductsStore } from "../../../../stores/useProductsStore";
+import { useProducts } from "../../../hooks/Products";
 
 export function PageSelector() {
-  const currentPage = useProductsStore((state) => state.currentPage);
-  const productInfo = useProductsStore((state) => state.productInfo);
-  const goNextPage = useProductsStore((state) => state.goNextPage);
-  const goPreviousPage = useProductsStore((state) => state.goPreviousPage);
+  const { currentPage, productInfo, goNextPage, goPreviousPage } =
+    useProducts();
+
   return (
     <Stack
       marginTop="16px"

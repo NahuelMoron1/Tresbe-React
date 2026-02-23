@@ -3,12 +3,31 @@ import { useProductItem } from "../../../hooks/Products";
 import "./ProductItem.css";
 import { useState } from "react";
 import { useCart } from "../../../hooks/Cart";
+import type { Product } from "../../../models/Products";
+import type { CartInfo } from "../../../models/Cart";
+import { sileo } from "sileo";
 
 export function ProductItem() {
   const { productID } = useParams<{ productID: string }>();
   const { product, options } = useProductItem(productID || "");
-  const [selectedOption, setSelectedOption] = useState(""); // Estado opcional
+  const [selectedOption, setSelectedOption] = useState("");
   const { addToCart, isOnCart } = useCart();
+
+  function handleAddToCart(product: Product) {
+    const cartInfo: CartInfo = addToCart(product, selectedOption);
+    if (cartInfo.modified) {
+      sileo.success({
+        title: cartInfo.message,
+        fill: "black",
+      });
+    } else {
+      sileo.error({
+        title: "Algo salió mal",
+        description: cartInfo.message,
+        fill: "black",
+      });
+    }
+  }
 
   if (!product) return <div className="loading">Cargando producto...</div>;
 
@@ -51,10 +70,7 @@ export function ProductItem() {
                     className="custom-select"
                     value={selectedOption}
                     onChange={(e) => {
-                      console.log(e.target.value);
-
                       setSelectedOption(e.target.value);
-                      console.log(selectedOption);
                     }}
                   >
                     <option value="" disabled>
@@ -82,14 +98,16 @@ export function ProductItem() {
             )}
 
             {isOnCart(product.id, selectedOption) >= 0 && (
-              <button className="is-on-cart-btn">En el carrito</button>
+              <Link className="is-on-cart-btn" to={"/cart"}>
+                En el carrito
+              </Link>
             )}
 
             {isOnCart(product.id, selectedOption) < 0 && (
               <button
                 className="add-to-cart-btn"
                 onClick={() => {
-                  addToCart(product, selectedOption);
+                  handleAddToCart(product);
                 }}
               >
                 Añadir al carrito

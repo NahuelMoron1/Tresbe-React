@@ -10,7 +10,7 @@
 nav {
   position: sticky;
   top: 0;
-  z-index: 1000;
+  z-index: 999;
   background-color: var(--bg-nav);
   backdrop-filter: blur(12px); /* Efecto de desenfoque premium */
   border-bottom: 1px solid var(--border);
@@ -83,4 +83,53 @@ nav ul li a:hover::after {
   nav ul li a {
     font-size: 0.8rem;
   }
+}
+
+/* Contenedor del link */
+.cart-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative; /* Clave para que el badge se posicione respecto al link */
+  padding: 0 8px;
+  text-decoration: none;
+  color: inherit;
+  height: 100%; /* Para que alinee verticalmente con los otros links */
+}
+
+.cart-icon-svg {
+  display: block;
+  transition: transform 0.2s ease;
+}
+
+/* Estilo del Badge (el numerito) */
+.cart-badge {
+  position: absolute;
+  top: -5px; /* Ajustá esto para subir/bajar el número */
+  right: -8px; /* Ajustá esto para moverlo a la derecha/izquierda */
+
+  background-color: var(--accent); /* El celeste que venimos usando */
+  color: #0f172a; /* Color oscuro para el texto del número */
+
+  font-size: 10px;
+  font-weight: 800;
+  line-height: 1;
+
+  min-width: 16px;
+  height: 16px;
+  border-radius: 10px; /* Lo hace circular o tipo píldora */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+
+  /* Un pequeño borde oscuro para que resalte si se superpone al icono */
+  border: 1.5px solid #0f172a;
+}
+
+/* Efecto hover opcional */
+.cart-link:hover .cart-icon-svg {
+  transform: scale(1.1);
+  color: var(--accent);
 }

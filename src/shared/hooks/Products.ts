@@ -8,11 +8,23 @@ import type { Options } from "../models/Options";
 export function useProducts() {
   const products = useProductsStore((state) => state.products);
   const currentPage = useProductsStore((state) => state.currentPage);
+  const productInfo = useProductsStore((state) => state.productInfo);
+  const goNextPage = useProductsStore((state) => state.goNextPage);
+  const goPreviousPage = useProductsStore((state) => state.goPreviousPage);
   const fetchProducts = useProductsStore((state) => state.fetchProducts);
   const searchFetchProducts = useProductsStore(
     (state) => state.searchFetchProducts,
   );
-  return { products, currentPage, fetchProducts, searchFetchProducts };
+
+  return {
+    products,
+    currentPage,
+    fetchProducts,
+    searchFetchProducts,
+    productInfo,
+    goNextPage,
+    goPreviousPage,
+  };
 }
 
 export function useProductItem(id: string) {
