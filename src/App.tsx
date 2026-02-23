@@ -2,8 +2,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Toaster } from "sileo";
 import { lazy, Suspense } from "react";
-import NavBar from "./shared/components/navbar/NavBar";
 
+// Importación normal (SIN lazy) para que el usuario la vea al instante
+import NavBar from "./shared/components/navbar/NavBar";
+import ErrorBoundary from "./shared/components/errors/ErrorBoundary";
+
+// Importaciones con Lazy
 const ProductsPage = lazy(() => import("./pages/ProductsPage"));
 const ProductItem = lazy(
   () => import("./shared/components/products/productItem/ProductItem"),
@@ -18,21 +22,29 @@ const Register = lazy(() => import("./shared/components/register/Register"));
 
 function App() {
   return (
-    <Suspense fallback={<div>Loading</div>}>
-      <Router>
-        <Toaster position="top-right" offset={80} />
-        <NavBar />
-        <Routes>
-          <Route path="/products" element={<ProductsPage />} />
-          <Route path="/products/:productID" element={<ProductItem />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/profile/edit" element={<EditUserdata />} />
-          <Route path="/register" element={<Register />} />
-        </Routes>
-      </Router>
-    </Suspense>
+    <Router>
+      <Toaster position="top-right" offset={80} />
+
+      {/* La NavBar queda fija, no depende del Suspense */}
+      <NavBar />
+
+      {/* Solo el contenido de las rutas mostrará el Loading al navegar */}
+      <ErrorBoundary>
+        <Suspense
+          fallback={<div className="loading-container">Loading...</div>}
+        >
+          <Routes>
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/products/:productID" element={<ProductItem />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/profile/edit" element={<EditUserdata />} />
+            <Route path="/register" element={<Register />} />
+          </Routes>
+        </Suspense>
+      </ErrorBoundary>
+    </Router>
   );
 }
 

@@ -162,6 +162,83 @@
   color: var(--bg-dark);
 }
 
+/* --- Mini Panel de Pedidos --- */
+.orders-card {
+  margin-top: 2rem;
+  width: 100%;
+  background: rgba(
+    15,
+    23,
+    42,
+    0.4
+  ); /* Un poco más oscuro que el fondo del aside */
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.orders-card:hover {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.orders-icon {
+  background: var(--bg-dark);
+  color: var(--accent);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.orders-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.orders-info {
+  flex: 1;
+  text-align: left;
+}
+
+.orders-title {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.orders-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.orders-arrow {
+  color: var(--text-muted);
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+.orders-arrow svg {
+  width: 14px;
+  height: 14px;
+}
+
+.orders-card:hover .orders-arrow {
+  color: var(--accent);
+  opacity: 1;
+  transform: translateX(3px);
+}
+
 /* --- Responsive --- */
 @media (max-width: 992px) {
   .profile-grid {
@@ -174,5 +251,9 @@
   }
   .profile-avatar {
     margin-bottom: 0;
+  }
+  .orders-card {
+    margin-top: 0;
+    max-width: 250px;
   }
 }

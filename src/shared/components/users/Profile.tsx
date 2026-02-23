@@ -29,6 +29,33 @@ export default function Profile() {
             <div className="profile-status">
               <span className="status-indicator"></span> Cuenta Activa
             </div>
+
+            <Link to="/orders" className="orders-card">
+              <div className="orders-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                </svg>
+              </div>
+              <div className="orders-info">
+                <span className="orders-title">Mis Pedidos</span>
+                <p className="orders-desc">Ver historial y estado</p>
+              </div>
+              <div className="orders-arrow">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="3"
+                >
+                  <path d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </Link>
           </aside>
 
           {/* Panel Principal: Detalles */}

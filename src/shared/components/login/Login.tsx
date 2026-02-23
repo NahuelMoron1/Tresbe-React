@@ -1,6 +1,7 @@
 import { sileo } from "sileo";
 import { useUser } from "../../hooks/User";
 import "./Login.css";
+import { Link } from "react-router-dom";
 
 export default function Login() {
   const { user, login } = useUser();
@@ -67,7 +68,7 @@ export default function Login() {
 
         <div className="login-footer">
           <p>
-            ¿No tienes cuenta? <a href="/register">Regístrate</a>
+            ¿No tienes cuenta? <Link to={"/register"}>Regístrate</Link>
           </p>
         </div>
       </div>
