@@ -1,3 +1,5 @@
+import type { CartInfo } from "./Cart";
+
 export interface User {
   id: string;
   email: string;
@@ -24,9 +26,11 @@ export interface Userdata {
 
 export interface UserState {
   user: User | null;
+  userdata: Userdata | null;
   login: (email: string, password: string) => Promise<LoginInfo>;
   get_user_logged: () => void;
   logout: () => void;
+  edit_userdata: (newUserdata: Userdata) => Promise<CartInfo>;
 }
 
 export interface LoginInfo {

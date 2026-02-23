@@ -1,5 +1,5 @@
 import { environment } from "../../environments/environment";
-import type { User } from "../models/User";
+import type { User, Userdata } from "../models/User";
 
 const API_URL = environment.endpoint;
 const API_OPTIONS = "api/Users/";
@@ -13,12 +13,40 @@ export async function getUserLogged() {
       return undefined;
     }
     const user: User = await res.json();
-    console.log(user);
 
     return user;
   } catch (error) {
     console.error(error);
     return undefined;
+  }
+}
+
+export async function getUserdata(userID: string) {
+  try {
+    const res = await fetch(`${API_URL}api/userdata/userid/${userID}`, {
+      credentials: "include",
+    });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+}
+
+export async function editUserdata(userdataID: string, userdata: Userdata) {
+  try {
+    await fetch(`${API_URL}api/userdata/${userdataID}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json", // Indica al servidor que lea JSON
+      },
+      body: JSON.stringify(userdata),
+    });
+    return true;
+  } catch (error) {
+    console.error(error);
+    return false;
   }
 }
 

@@ -6,6 +6,8 @@ import { ProductItem } from "./shared/components/products/productItem/ProductIte
 import { Toaster } from "sileo";
 import { Cart } from "./shared/components/cart/Cart";
 import { Login } from "./shared/components/login/Login";
+import { Profile } from "./shared/components/users/Profile";
+import { EditUserdata } from "./shared/components/users/EditUserdata";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path="/products/:productID" element={<ProductItem />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/edit" element={<EditUserdata />} />
       </Routes>
     </Router>
   );
