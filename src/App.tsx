@@ -19,6 +19,7 @@ const EditUserdata = lazy(
   () => import("./shared/components/users/EditUserdata"),
 );
 const Register = lazy(() => import("./shared/components/register/Register"));
+const OrdersList = lazy(() => import("./shared/components/orders/OrdersList"));
 
 function App() {
   return (
@@ -41,6 +42,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/profile/edit" element={<EditUserdata />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/orders" element={<OrdersList />} />
           </Routes>
         </Suspense>
       </ErrorBoundary>
